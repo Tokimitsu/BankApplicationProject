@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20230919-05-agreements
+      author: tokimitsu
+      changes:
+        - createTable:
+            tableName: agreements
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: agreements_fk_account_id
+                    referencedTableName: accounts
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: agreements_fk_product_id
+                    referencedTableName: products
+                    referencedColumnNames: id
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_rate
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: debt
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  defaultValueDate: ${now}
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  defaultValueDate: ${now}
+        - createIndex:
+            tableName: agreements
+            indexName: agreements_idx_status
+            columns:
+              - column:
+                  name: status
+        - createIndex:
+            tableName: agreements
+            indexName: agreements_idx_created_at
+            columns:
+              - column:
+                  name: created_at

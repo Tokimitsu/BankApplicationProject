@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20230919-04-products
+      author: tokimitsu
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_code
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: min_interest_rate
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: max_offer_limit
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  defaultValueDate: ${now}
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  defaultValueDate: ${now}
+        - createIndex:
+            tableName: products
+            indexName: products_idx_status
+            columns:
+              - column:
+                  name: status
+        - createIndex:
+            tableName: products
+            indexName: products_idx_created_at
+            columns:
+              - column:
+                  name: created_at

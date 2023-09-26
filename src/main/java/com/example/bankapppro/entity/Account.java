@@ -2,13 +2,14 @@ package com.example.bankapppro.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GeneratedColumn;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -23,32 +24,33 @@ public class Account {
     @Column(name = "id")
     private Long id;
 
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @NonNull
     private Client client;
 
     @Column(name = "name")
+    @NonNull
     private String name;
-
-    @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private AccountType type;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
+    @NonNull
     private AccountStatus status;
 
     @Column(name = "balance")
-    private long balance;
+    @NonNull
+    private Long balance;
 
     @Column(name = "currency_code")
-    private int currencyCode;
+    @NonNull
+    private Integer currencyCode;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private Timestamp updatedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
     private List<Agreement> agreements;
@@ -58,4 +60,14 @@ public class Account {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "creditAccount")
     private List<Transaction> creditTransactions;
+
+    @PrePersist
+    private void prePersist() {
+        createdAt = updatedAt = Timestamp.from(Instant.now());
+    }
+
+    @PreUpdate
+    private void preUpdate() {
+        updatedAt = Timestamp.from(Instant.now());
+    }
 }
