@@ -1,14 +1,19 @@
 package com.example.bankapppro.service.util;
 
+import com.example.bankapppro.dto.ClientDto;
 import com.example.bankapppro.entity.Client;
-import com.example.bankapppro.exception.ClientNotFoundException;
+import com.example.bankapppro.exception.EntityNotFoundException;
+
+import java.util.List;
 
 public interface ClientService {
-    Client getClientById(Long id);
+    ClientDto getClientById(Long id);
 
-    Client addNewClient(Client client);
+    ClientDto addNewClient(Client client);
 
-    Client updateClient(Long id, Client client) throws ClientNotFoundException;
+    ClientDto updateClient(Long id, Client client) throws EntityNotFoundException;
 
-    void removeClientById(Long id) throws ClientNotFoundException;
+    void removeClientById(Long id) throws EntityNotFoundException;
+
+    List<ClientDto> getAllClients();
 }

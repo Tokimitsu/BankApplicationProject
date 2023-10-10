@@ -1,4 +1,7 @@
 package com.example.bankapppro.repository;
 
-public interface AgreementRepository {
+import com.example.bankapppro.entity.Agreement;
+import org.springframework.data.repository.CrudRepository;
+
+public interface AgreementRepository extends CrudRepository<Agreement,Long> {
 }

@@ -1,12 +1,14 @@
 package com.example.bankapppro.controller;
 
-import com.example.bankapppro.entity.Account;
+import com.example.bankapppro.dto.ClientDto;
 import com.example.bankapppro.entity.Client;
-import com.example.bankapppro.exception.ClientNotFoundException;
-import com.example.bankapppro.service.util.AccountService;
+import com.example.bankapppro.exception.EntityNotFoundException;
+import com.example.bankapppro.mapper.ClientMapper;
 import com.example.bankapppro.service.util.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("auth/clients")
@@ -14,23 +16,29 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
     private final ClientService clientService;
 
-    @GetMapping("/{id}")
-    public Client getClientById(@PathVariable("id") Long id) {
-        return clientService.getClientById(id);
-    }
-
-    @PutMapping("")
-    public Client addNewClient(@RequestBody Client client) {
-        return clientService.addNewClient(client);
-    }
-
-    @PostMapping("/{id}")
-    public Client updateClient(@PathVariable("id") Long id, @RequestBody Client client) throws ClientNotFoundException {
-        return clientService.updateClient(id, client);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteClientById(@PathVariable("id") Long id) throws ClientNotFoundException {
-        clientService.removeClientById(id);
-    }
+//TODO getAllClientsWhereBalanceMoreThan
+//    @GetMapping("/{id}")
+//    public ClientDto getClientById(@PathVariable Long id) {
+//        return clientService.getClientById(id);
+//    }
+//
+//    @PutMapping
+//    public ClientDto createClient(@RequestBody Client client) {
+//        return clientService.addNewClient(client);
+//    }
+//
+//    @PostMapping("/{id}")
+//    public ClientDto updateClient(@PathVariable Long id, @RequestBody Client client) throws EntityNotFoundException {
+//        return clientService.updateClient(id, client);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteClient(@PathVariable Long id) throws EntityNotFoundException {
+//        clientService.removeClientById(id);
+//    }
+//
+//    @GetMapping("/all")
+//    public List<ClientDto> getAllClients() {
+//        return clientService.getAllClients();
+//    }
 }

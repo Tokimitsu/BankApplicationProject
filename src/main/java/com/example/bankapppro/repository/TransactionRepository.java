@@ -1,4 +1,7 @@
 package com.example.bankapppro.repository;
 
-public interface TransactionRepository {
+import com.example.bankapppro.entity.Transaction;
+import org.springframework.data.repository.CrudRepository;
+
+public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 }
