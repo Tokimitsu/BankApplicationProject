@@ -2,18 +2,17 @@ package com.example.bankapppro.service.impl;
 
 import com.example.bankapppro.dto.AccountDto;
 import com.example.bankapppro.entity.Account;
-import com.example.bankapppro.exception.EntityNotFoundException;
+import com.example.bankapppro.entity.AccountStatus;
 import com.example.bankapppro.mapper.AccountMapper;
 import com.example.bankapppro.repository.AccountRepository;
 import com.example.bankapppro.service.util.AccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,31 +37,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto updateAccount(Long id, Account account) throws EntityNotFoundException {
-        Account updatedAccount = accountRepository.findById(id).orElse(null);
-        if (updatedAccount == null) {
-            throw new EntityNotFoundException();
-        }
-        updatedAccount.setClient(account.getClient());
-        updatedAccount.setName(account.getName());
-        updatedAccount.setStatus(account.getStatus());
-        updatedAccount.setBalance(account.getBalance());
-        updatedAccount.setCurrencyCode(account.getCurrencyCode());
-        accountRepository.save(updatedAccount);
-        return accountMapper.entityToDto(updatedAccount);
-    }
-
-    @Override
-    public void deleteAccount(Long id) throws EntityNotFoundException {
-        if (!accountRepository.existsById(id)){
-            throw new EntityNotFoundException();
-        }
-        accountRepository.deleteById(id);
-    }
-
-    @GetMapping("/all")
-    public List<AccountDto> getAllAccounts() {
+    public List<AccountDto> getAllActiveAccounts() {
         List<Account> accounts = (List<Account>) accountRepository.findAll();
-        return accountMapper.toDtoList(accounts);
+        return accountMapper.toDtoList(accounts.stream()
+                .filter(a -> a.getStatus().equals(AccountStatus.ACTIVE))
+                .collect(Collectors.toList()));
     }
 }

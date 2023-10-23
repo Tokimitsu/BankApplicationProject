@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: sql-input-data
+      author: Tokimitsu
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/database.sql

@@ -11,10 +11,7 @@ import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
 
-
     List<TransactionDto> entityListToDtoList(List<Transaction> transactions);
 
     TransactionDto entityToDto(Transaction transaction);
-
-    Transaction dtoToEntity(TransactionDto transactionDTO);
 }

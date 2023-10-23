@@ -2,7 +2,6 @@ package com.example.bankapppro.service.impl;
 
 import com.example.bankapppro.dto.TransactionDto;
 import com.example.bankapppro.entity.Transaction;
-import com.example.bankapppro.exception.EntityNotFoundException;
 import com.example.bankapppro.mapper.TransactionMapper;
 import com.example.bankapppro.repository.TransactionRepository;
 import com.example.bankapppro.service.util.TransactionService;
@@ -10,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,41 +19,17 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDto getTransactionById(Long id) {
-        return transactionMapper.entityToDto(transactionRepository
-                .findById(id)
+        return transactionMapper.entityToDto(transactionRepository.findById(id)
                 .orElse(null));
     }
 
-    @Override
-    public TransactionDto createTransaction(Transaction transaction) {
-        transactionRepository.save(transaction);
-        return transactionMapper.entityToDto(transaction);
-    }
 
     @Override
-    public TransactionDto updateTransaction(Long id, Transaction transaction) throws EntityNotFoundException {
-        Transaction updatedTransaction = transactionRepository.findById(id)
-                .orElse(null);
-        if (updatedTransaction == null) {
-            throw new EntityNotFoundException();
-        }
-        updatedTransaction.setStatus(transaction.getStatus());
-        updatedTransaction.setAmount(transaction.getAmount());
-        updatedTransaction.setDescription(transaction.getDescription());
-        transactionRepository.save(updatedTransaction);
-        return transactionMapper.entityToDto(updatedTransaction);
-    }
-
-    @Override
-    public void deleteTransaction(Long id) throws EntityNotFoundException {
-        if (!transactionRepository.existsById(id)){
-            throw new EntityNotFoundException();
-        }
-        transactionRepository.deleteById(id);
-    }
-
-    @Override
-    public List<TransactionDto> getAllTransactions() {
-        return transactionMapper.entityListToDtoList((List<Transaction>) transactionRepository.findAll());
+    public List<TransactionDto> findAllTransactionsWhereAccountIdIs(Long id) {
+        List<Transaction> transactions = (List<Transaction>) transactionRepository.findAll();
+        return transactionMapper.entityListToDtoList(transactions.stream()
+                .filter(transaction -> transaction.getCreditAccount().getId().equals(id)
+                        && transaction.getDebitAccount().getId().equals(id))
+                .toList());
     }
 }

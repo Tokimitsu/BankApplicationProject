@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 public class ProductDto {
-private Long id;
-private String name;
-private ProductStatus status;
-private Integer currencyCode;
-private Integer minInterestRate;
-private Long maxOfferLimit;
+    private Long id;
+    private String name;
+    private ProductStatus status;
+    private Integer currencyCode;
+    private Integer minInterestRate;
+    private Long maxOfferLimit;
 }

@@ -2,12 +2,10 @@ package com.example.bankapppro.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GeneratedColumn;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 
 @AllArgsConstructor

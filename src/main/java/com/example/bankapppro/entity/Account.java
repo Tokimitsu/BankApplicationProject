@@ -2,7 +2,6 @@ package com.example.bankapppro.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GeneratedColumn;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -15,6 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
+@Builder
 
 @Entity
 @Table(name = "accounts")

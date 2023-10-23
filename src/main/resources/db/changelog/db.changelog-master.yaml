@@ -26,3 +26,5 @@ databaseChangeLog:
       file: db/changelog/changeset/20230919-04-products.yaml
   - include:
       file: db/changelog/changeset/20230919-05-agreements.yaml
+  - include:
+      file: db/changelog/changeset/20230919-06-insert-data.yaml

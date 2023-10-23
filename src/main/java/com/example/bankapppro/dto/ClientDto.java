@@ -4,7 +4,6 @@ import com.example.bankapppro.entity.ClientStatus;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Data
 public class ClientDto {

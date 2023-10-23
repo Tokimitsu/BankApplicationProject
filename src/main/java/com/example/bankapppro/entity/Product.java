@@ -3,12 +3,9 @@ package com.example.bankapppro.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,7 +50,7 @@ public class Product {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
     private List<Agreement> agreements;
 
     @PrePersist

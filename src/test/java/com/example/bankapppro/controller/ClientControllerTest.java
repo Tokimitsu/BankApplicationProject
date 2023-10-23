@@ -1,7 +1,10 @@
 package com.example.bankapppro.controller;
 
+import com.example.bankapppro.entity.Account;
 import com.example.bankapppro.entity.Client;
 import com.example.bankapppro.entity.ClientStatus;
+import com.example.bankapppro.repository.ClientRepository;
+import com.example.bankapppro.service.util.ClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +21,12 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -27,38 +35,43 @@ class ClientControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-    private final ObjectMapper mapper = new ObjectMapper();
-
+    @Autowired
+    private ClientService clientService;
+    @Autowired
+    private ClientRepository mock =  mock(ClientRepository.class);
 
     @Test
-    void addNewClient() throws Exception {
-        Client client = new Client();
-        client.setStatus(ClientStatus.ACTIVE);
-        client.setFirstName("Joe");
-        client.setLastName("Oej");
-        client.setAddress("sdfsdf");
-        client.setPhone("sdfsdf");
-        client.setEmail("sdfsdf");
-        client.setPassword("sdfsdf");
+    void getClientsWithBalanceGreaterThan() {
+        // Arrange
+        long minBalance = 1000L;
+        List<Client> clients = new ArrayList<>();
 
-        String requestJson = mapper.writeValueAsString(client);
-        MvcResult createResult = mockMvc.perform(
-                MockMvcRequestBuilders.put("/auth/clients")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestJson)
-        ).andExpect(
-                MockMvcResultMatchers.status().isOk()
-        ).andReturn();
+        // Створюємо клієнта з балансом більше `minBalance`
+        Client client1 = new Client();
+        client1.setId(1L);
+        client1.setAccounts(new ArrayList<>());
+        Account account1 = new Account();
+        account1.setBalance(minBalance + 100L);
+        client1.getAccounts().add(account1);
+        clients.add(client1);
 
-        Client createdClient = mapper.readValue(createResult.getResponse().getContentAsString(), Client.class);
+        // Створюємо клієнта з балансом менше `minBalance`
+        Client client2 = new Client();
+        client2.setId(2L);
+        client2.setAccounts(new ArrayList<>());
+        Account account2 = new Account();
+        account2.setBalance(minBalance - 100L);
+        client2.getAccounts().add(account2);
+        clients.add(client2);
 
-        MvcResult getResult = mockMvc.perform(
-                MockMvcRequestBuilders.get("/auth/clients/" + createdClient.getId())
-        ).andExpect(
-                MockMvcResultMatchers.status().isOk()
-        ).andReturn();
+        when(mock.findAll()).thenReturn(clients);
+        when()
 
-        Client getClient = mapper.readValue(getResult.getResponse().getContentAsString(), Client.class);
-        Assertions.assertEquals(getClient.getId(), createdClient.getId());
+        // Act
+        List<Client> result = clientService.getClientsWithBalanceGreaterThan(minBalance);
+
+        // Assert
+        assertEquals(1, result.size()); // Очікуємо, що повернеться лише один клієнт
+        assertEquals(client1, result.get(0)); // Перевірка, чи це той самий клієнт
     }
 }
