@@ -2,7 +2,7 @@
 
  There is a prototype of the BackEnd Bank's Core Services data.
 
- Data consist of clients, accounts, products, accounts, transactions and managers
+ Data consist of clients, accounts, products, accounts, transactions.
 ___
 
 * [ApiDoc Link](http://localhost:8080/swagger-ui/index.html) 
