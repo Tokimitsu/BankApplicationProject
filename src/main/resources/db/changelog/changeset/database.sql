@@ -56,15 +56,15 @@ values (1, 1, 1, 'ACTIVE', 3.5, 5000.00, TIMESTAMP '2022-01-15 14:30:00', TIMEST
        (9, 9, 9, 'INACTIVE', 4.0, 7500.00, TIMESTAMP '2022-07-30 12:10:00', TIMESTAMP '2022-07-30 17:25:00'),
        (10, 10, 10, 'ACTIVE', 3.5, 5500.00, TIMESTAMP '2022-08-10 15:55:00', TIMESTAMP '2022-08-10 18:05:00');
 
-INSERT INTO transactions(id,debit_account_id,credit_account_id,status,amount,description,created_at,updated_at)
-values(1, 1, 2, 'COMPLETED', 1000.00, 'Payment for services', TIMESTAMP '2022-01-05 10:30:00', TIMESTAMP '2022-01-05 11:45:00'),
-      (2, 3, 1, 'CANCELED', 1500.00, 'Loan repayment', TIMESTAMP '2022-01-15 09:45:00', TIMESTAMP '2022-01-15 10:50:00'),
-      (3, 2, 4, 'PENDING', 500.00, 'Purchase', TIMESTAMP '2022-02-10 15:15:00', TIMESTAMP '2022-02-10 16:30:00'),
-      (4, 1, 3, 'COMPLETED', 2000.00, 'Salary deposit', TIMESTAMP '2022-03-20 13:45:00', TIMESTAMP '2022-03-20 15:20:00'),
-      (5, 4, 2, 'PENDING', 750.00, 'Online shopping', TIMESTAMP '2022-03-25 11:30:00', TIMESTAMP '2022-03-25 14:10:00'),
-      (6, 3, 5, 'COMPLETED', 1200.00, 'Payment for services', TIMESTAMP '2022-04-05 14:55:00', TIMESTAMP '2022-04-05 17:30:00'),
-      (7, 2, 6, 'PENDING', 800.00, 'Loan repayment', TIMESTAMP '2022-04-15 08:30:00', TIMESTAMP '2022-04-15 10:45:00'),
-      (8, 5, 4, 'COMPLETED', 300.00, 'Online shopping', TIMESTAMP '2022-05-25 16:20:00', TIMESTAMP '2022-05-25 18:40:00'),
-      (9, 4, 1, 'PENDING', 900.00, 'Payment for services', TIMESTAMP '2022-06-10 12:10:00', TIMESTAMP '2022-06-10 17:25:00'),
-      (10, 6, 5, 'COMPLETED', 400.00, 'Loan repayment', TIMESTAMP '2022-07-20 15:55:00', TIMESTAMP '2022-07-20 18:05:00');
+INSERT INTO transactions(debit_account_id,credit_account_id,amount,description,created_at,updated_at)
+values(1, 2, 1000.00, 'Payment for services', TIMESTAMP '2022-01-05 10:30:00', TIMESTAMP '2022-01-05 11:45:00'),
+      (3, 1, 1500.00, 'Loan repayment', TIMESTAMP '2022-01-15 09:45:00', TIMESTAMP '2022-01-15 10:50:00'),
+      (2, 4, 500.00, 'Purchase', TIMESTAMP '2022-02-10 15:15:00', TIMESTAMP '2022-02-10 16:30:00'),
+      (1, 3, 2000.00, 'Salary deposit', TIMESTAMP '2022-03-20 13:45:00', TIMESTAMP '2022-03-20 15:20:00'),
+      (4, 2, 750.00, 'Online shopping', TIMESTAMP '2022-03-25 11:30:00', TIMESTAMP '2022-03-25 14:10:00'),
+      (3, 5, 1200.00, 'Payment for services', TIMESTAMP '2022-04-05 14:55:00', TIMESTAMP '2022-04-05 17:30:00'),
+      (2, 6, 800.00, 'Loan repayment', TIMESTAMP '2022-04-15 08:30:00', TIMESTAMP '2022-04-15 10:45:00'),
+      (5, 4, 300.00, 'Online shopping', TIMESTAMP '2022-05-25 16:20:00', TIMESTAMP '2022-05-25 18:40:00'),
+      (4, 1, 900.00, 'Payment for services', TIMESTAMP '2022-06-10 12:10:00', TIMESTAMP '2022-06-10 17:25:00'),
+      (6, 5, 400.00, 'Loan repayment', TIMESTAMP '2022-07-20 15:55:00', TIMESTAMP '2022-07-20 18:05:00');
 

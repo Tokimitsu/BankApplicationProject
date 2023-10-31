@@ -30,11 +30,6 @@ databaseChangeLog:
                     referencedColumnNames: id
                     nullable: false
               - column:
-                  name: status
-                  type: varchar(16)
-                  constraints:
-                    nullable: false
-              - column:
                   name: amount
                   type: bigint
                   constraints:
@@ -56,12 +51,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValueDate: ${now}
-        - createIndex:
-            tableName: transactions
-            indexName: transactions_idx_status
-            columns:
-              - column:
-                  name: status
         - createIndex:
             tableName: transactions
             indexName: transactions_idx_created_at

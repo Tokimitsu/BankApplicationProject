@@ -10,7 +10,6 @@ public class TransactionDto {
     private Long id;
     private AccountDto debitAccount;
     private AccountDto creditAccount;
-    private TransactionStatus status;
     private Long amount;
     private String description;
     private Timestamp createdAt;

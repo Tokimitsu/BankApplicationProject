@@ -24,7 +24,7 @@ public class Account {
     @Column(name = "id")
     private Long id;
 
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     @NonNull
     private Client client;

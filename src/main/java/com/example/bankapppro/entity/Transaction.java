@@ -24,19 +24,14 @@ public class Transaction {
     private Long id;
 
     @JoinColumn(name = "debit_account_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @NonNull
     private Account debitAccount;
 
     @JoinColumn(name = "credit_account_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @NonNull
     private Account creditAccount;
-
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    @NonNull
-    private TransactionStatus status;
 
     @Column(name = "amount")
     @NonNull
