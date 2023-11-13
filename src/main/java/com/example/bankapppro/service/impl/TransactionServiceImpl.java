@@ -21,7 +21,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public TransactionDto getTransactionById(Long id) {
         return transactionMapper.entityToDto(transactionRepository.findById(id)
-                .orElse(null)); //throw exception TODO
+                .orElse(null)); // throw exception TODO
     }
 
 
@@ -32,6 +32,6 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionMapper.entityListToDtoList(transactions.stream()
                 .filter(transaction -> transaction.getCreditAccount().getId().equals(id)
                         || transaction.getDebitAccount().getId().equals(id))
-                .toList()); // Написать Querry in repository TODO
+                .toList());
     }
 }

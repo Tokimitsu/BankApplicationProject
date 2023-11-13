@@ -23,25 +23,20 @@ public class Agreement {
 
     @JoinColumn(name = "account_id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @NonNull
     private Account account;
 
     @JoinColumn(name = "product_id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @NonNull
     private Product product;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    @NonNull
     private AgreementStatus status;
 
     @Column(name = "interest_rate")
-    @NonNull
     private Integer interestRate;
 
     @Column(name = "debt")
-    @NonNull
     private Long debt;
 
     @Column(name = "created_at")

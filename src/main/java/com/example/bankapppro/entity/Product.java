@@ -24,24 +24,19 @@ public class Product {
     private Long id;
 
     @Column(name = "name")
-    @NonNull
     private String name;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    @NonNull
     private ProductStatus status;
 
     @Column(name = "currency_code")
-    @NonNull
     private Integer currencyCode;
 
     @Column(name = "min_interest_rate")
-    @NonNull
     private Integer minInterestRate;
 
     @Column(name = "max_offer_limit")
-    @NonNull
     private Long maxOfferLimit;
 
     @Column(name = "created_at")

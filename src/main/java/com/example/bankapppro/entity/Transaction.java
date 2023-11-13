@@ -25,20 +25,16 @@ public class Transaction {
 
     @JoinColumn(name = "debit_account_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @NonNull
     private Account debitAccount;
 
     @JoinColumn(name = "credit_account_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @NonNull
     private Account creditAccount;
 
     @Column(name = "amount")
-    @NonNull
     private Long amount;
 
     @Column(name = "description")
-    @NonNull
     private String description;
 
     @Column(name = "created_at")

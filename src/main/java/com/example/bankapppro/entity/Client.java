@@ -26,31 +26,24 @@ public class Client {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    @NonNull
     private ClientStatus status;
 
     @Column(name = "first_name")
-    @NonNull
     private String firstName;
 
     @Column(name = "last_name")
-    @NonNull
     private String lastName;
 
     @Column(name = "email")
-    @NonNull
     private String email;
 
     @Column(name = "password")
-    @NonNull
     private String password;
 
     @Column(name = "address")
-    @NonNull
     private String address;
 
     @Column(name = "phone")
-    @NonNull
     private String phone;
 
     @Column(name = "created_at")

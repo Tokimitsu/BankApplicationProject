@@ -26,24 +26,19 @@ public class Account {
 
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @NonNull
     private Client client;
 
     @Column(name = "name")
-    @NonNull
     private String name;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    @NonNull
     private AccountStatus status;
 
     @Column(name = "balance")
-    @NonNull
     private Long balance;
 
     @Column(name = "currency_code")
-    @NonNull
     private Integer currencyCode;
 
     @Column(name = "created_at")

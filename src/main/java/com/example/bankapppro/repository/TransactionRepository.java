@@ -8,6 +8,4 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
-//    @Query
-
 }
