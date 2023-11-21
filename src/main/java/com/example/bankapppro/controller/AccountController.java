@@ -25,7 +25,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("hasAuthority('user:read')")
+    @PreAuthorize("hasAuthority('user:read')")
     @Tag(name = "Get Account by Id")
     public AccountDto getAccountById(@PathVariable("id") Long id) {
         return accountService.getAccountById(id);
