@@ -4,6 +4,7 @@ import com.example.bankapppro.dto.TransactionDto;
 import com.example.bankapppro.service.util.TransactionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +22,15 @@ public class TransactionController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('user:read')")
     @Tag(name = "Get transaction by id")
-    public TransactionDto getTransactionById(@PathVariable Long id) {
-        return transactionService.getTransactionById(id);
+    public ResponseEntity<TransactionDto> getTransactionById(@PathVariable Long id) {
+        return ResponseEntity.ok(transactionService.getTransactionById(id));
+
     }
 
     @GetMapping("/all/{account_id}")
     @PreAuthorize("hasAuthority('user:write')")
     @Tag(name = "Get all transactions where account id is")
-    public List<TransactionDto> findAllTransactionsWhereAccountIdIs(@PathVariable Long account_id) {
-        return transactionService.findAllTransactionsWhereAccountIdIs(account_id);
+    public ResponseEntity<List<TransactionDto>> findAllTransactionsWhereAccountIdIs(@PathVariable Long account_id) {
+        return ResponseEntity.ok(transactionService.findAllTransactionsWhereAccountIdIs(account_id));
     }
 }

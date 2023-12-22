@@ -4,6 +4,7 @@ import com.example.bankapppro.dto.AgreementDto;
 import com.example.bankapppro.service.util.AgreementService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,8 @@ public class AgreementController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('user:read')")
     @Tag(name = "Get Agreement by Id")
-    public AgreementDto getAgreementById(@PathVariable Long id) {
-        return agreementService.getAgreementById(id);
+    public ResponseEntity<AgreementDto> getAgreementById(@PathVariable Long id) {
+        AgreementDto agreementDto = agreementService.getAgreementById(id);
+        return (agreementDto != null) ? ResponseEntity.ok(agreementDto) : ResponseEntity.notFound().build();
     }
 }

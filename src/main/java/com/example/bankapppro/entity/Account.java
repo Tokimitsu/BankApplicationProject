@@ -24,6 +24,7 @@ public class Account {
     @Column(name = "id")
     private Long id;
 
+
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
@@ -33,7 +34,7 @@ public class Account {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private AccountStatus status;
+    private AccountStatus status = AccountStatus.ACTIVE;
 
     @Column(name = "balance")
     private Long balance;

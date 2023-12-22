@@ -1,12 +1,10 @@
 package com.example.bankapppro.service.impl;
 
 import com.example.bankapppro.dto.AgreementDto;
-import com.example.bankapppro.entity.Agreement;
 import com.example.bankapppro.mapper.AgreementMapper;
 import com.example.bankapppro.repository.AgreementRepository;
 import com.example.bankapppro.service.util.AgreementService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
